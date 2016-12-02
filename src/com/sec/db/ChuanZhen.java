@@ -12,12 +12,9 @@ public class ChuanZhen {
     private int cid;
 
     @Basic
-    @Column(name = "传真")
+    @Column(name = "department")
     private String department="传真";
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid", referencedColumnName = "sid")
-    private User user;
 
     public ChuanZhen() {
     }
@@ -38,11 +35,11 @@ public class ChuanZhen {
         this.department = department;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public String toString() {
+        return "com.sec.db.ChuanZhen{" +
+                "cid=" + cid +
+                ", 部门='" + department + '\'' +
+                '}';
     }
 }

@@ -14,12 +14,8 @@ public class JiGui {
     @Column(name = "机规")
     private String department="机规";
     @Basic
-    @Column(name = "机规内容")
+    @Column(name = "内容")
     private String content;
-
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid", referencedColumnName = "sid")
-    private User user;
 
     public JiGui() {
     }
@@ -53,11 +49,12 @@ public class JiGui {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public String toString() {
+        return "com.sec.db.JiGui{" +
+                "jid=" + jid +
+                ", 部门='" + department + '\'' +
+                ", 内容='" + content + '\'' +
+                '}';
     }
 }

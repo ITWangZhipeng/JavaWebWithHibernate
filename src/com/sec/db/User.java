@@ -1,5 +1,7 @@
 package com.sec.db;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,27 +11,24 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int sid;
+    @GeneratedValue(generator = "WorkId")
+    @GenericGenerator(name = "WorkId",strategy = "assigned")
+    private long WorkID;
 
     @Basic
-    @Column(name = "工号", unique = true, length = 8)
-    private String WorkID;
-
-    @Basic
-    @Column(name = "用户名")
+    @Column(name = "userName")
     private String userName;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "utid")
+    @JoinColumn(name = "WorkID")
     private Set<TongZhiDan> tongZhiDens;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ujid")
+    @JoinColumn(name = "WorkID")
     private Set<JiGui> jiGuis;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ucid")
+    @JoinColumn(name = "WorkID")
     private Set<ChuanZhen> chuanZhens;
 
     @Basic
@@ -37,17 +36,14 @@ public class User {
     public User() {
     }
 
-    public User(String workID, String userName, String pwd) {
+    public User(long workID, String userName, String pwd) {
         WorkID = workID;
         this.userName = userName;
         this.password = pwd;
     }
 
-    public int getSid() {
-        return sid;
-    }
 
-    public String getWorkID() {
+    public long getWorkID() {
         return WorkID;
     }
 
@@ -55,11 +51,8 @@ public class User {
         return userName;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
-    }
 
-    public void setWorkID(String workID) {
+    public void setWorkID(long workID) {
         WorkID = workID;
     }
 
@@ -99,5 +92,12 @@ public class User {
         this.chuanZhens = chuanZhens;
     }
 
-
+    @Override
+    public String toString() {
+        return "com.sec.db.User{" +
+                " 工号='" + WorkID + '\'' +
+                ", 用户名='" + userName + '\'' +
+                ", 密码='" + password + '\'' +
+                '}';
+    }
 }

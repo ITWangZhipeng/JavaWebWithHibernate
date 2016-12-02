@@ -10,16 +10,16 @@ public class TongZhiDan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tid;
+
     @Basic
     @Column(name = "部门")
     private String department;
+
     @Basic
-    @Column(name = "通知单内容")
+    @Column(name = "内容")
     private String content;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "sid", referencedColumnName = "sid")
-    private User user;
+
 
     public TongZhiDan() {
     }
@@ -53,11 +53,12 @@ public class TongZhiDan {
         return content;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public String toString() {
+        return "com.sec.db.TongZhiDan{" +
+                "tid=" + tid +
+                ", 部门='" + department + '\'' +
+                ", 内容='" + content + '\'' +
+                '}';
     }
 }
