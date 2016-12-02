@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Created by Administrator on 2016/11/30.
  */
-@SuppressWarnings("JpaDataSourceORMInspection")
+@SuppressWarnings({"JpaDataSourceORMInspection", "unused"})
 @Entity
 public class JiGui {
     @Id
@@ -60,9 +60,8 @@ public class JiGui {
     @Override
     public String toString() {
         String new_sid = String.format("%03d", jid);
-        return "com.sec.db.JiGui{机规" +
-                (year-2000) + '-' +new_sid +
-                ":" + content +
-                '}';
+        return "机规" +
+                (year - 2000) + '-' + new_sid +
+                ":" + content ;
     }
 }

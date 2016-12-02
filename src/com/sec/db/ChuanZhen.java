@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Created by Administrator on 2016/11/30.
  */
-@SuppressWarnings("JpaDataSourceORMInspection")
+@SuppressWarnings({"JpaDataSourceORMInspection", "unused"})
 @Entity
 public class ChuanZhen {
     @Id
@@ -39,9 +39,8 @@ public class ChuanZhen {
     @Override
     public String toString() {
         String new_cid = String.format("%03d", cid);
-        return "com.sec.db.ChuanZhen{传真" +
-                (year-2000) + '-' +new_cid +
-                ":" + content +
-                '}';
+        return "传真" +
+                (year - 2000) + '-' + new_cid +
+                ":" + content ;
     }
 }

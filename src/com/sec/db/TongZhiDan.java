@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Created by Administrator on 2016/11/30.
  */
-@SuppressWarnings("JpaDataSourceORMInspection")
+@SuppressWarnings({"JpaDataSourceORMInspection", "unused"})
 @Entity
 public class TongZhiDan {
     @Id
@@ -22,11 +22,9 @@ public class TongZhiDan {
     private String content;
 
 
-
     @Basic
     @Column(name = "年度")
     private int year = Calendar.getInstance().get(Calendar.YEAR);
-
 
 
     public TongZhiDan() {
@@ -72,10 +70,9 @@ public class TongZhiDan {
     @Override
     public String toString() {
         String new_tid = String.format("%03d", tid);
-        return "com.sec.db.TongZhiDan{" + department +
+        return department +
                 (year - 2000) + '-' +
                 new_tid +
-                ':' + content +
-                '}';
+                ':' + content ;
     }
 }

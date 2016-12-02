@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@SuppressWarnings("JpaQlInspection")
+@SuppressWarnings({"JpaQlInspection", "SpellCheckingInspection"})
 public class DBTest {
     Session session;
     Transaction transaction;
@@ -99,10 +99,11 @@ public class DBTest {
     }
 
     @Test
-    public void Inquiry_TZD() {
+    public void Inquiry_TZD(long WorkID) {
+        WorkID = 10433208L;
         String hql = "from TongZhiDan where WorkID =:WorkID";
         Query query = session.createQuery(hql);
-        query.setLong("WorkID", 10433208L);
+        query.setLong("WorkID", WorkID);
         List<TongZhiDan> list = query.list();
         for (TongZhiDan TZD : list) {
             System.out.println(TZD.toString());
@@ -110,10 +111,11 @@ public class DBTest {
     }
 
     @Test
-    public void Inquiry_JG() {
+    public void Inquiry_JG(long WorkID) {
+        WorkID = 10433208L;
         String hql = "from JiGui where WorkID =:WorkID";
         Query query = session.createQuery(hql);
-        query.setLong("WorkID", 10433208L);
+        query.setLong("WorkID", WorkID);
         List<JiGui> list = query.list();
         for (JiGui JG : list) {
             System.out.println(JG.toString());
@@ -121,10 +123,11 @@ public class DBTest {
     }
 
     @Test
-    public void Inquiry_CZ() {
+    public void Inquiry_CZ(long WorkID) {
+        WorkID = 10433208L;
         String hql = "from ChuanZhen where WorkID =:WorkID";
         Query query = session.createQuery(hql);
-        query.setLong("WorkID", 10433208L);
+        query.setLong("WorkID", WorkID);
         List<ChuanZhen> list = query.list();
         for (ChuanZhen CZ : list) {
             System.out.println(CZ.toString());

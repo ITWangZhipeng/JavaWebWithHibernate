@@ -8,12 +8,12 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/11/30.
  */
-@SuppressWarnings("JpaDataSourceORMInspection")
+@SuppressWarnings({"JpaDataSourceORMInspection", "unused", "SpellCheckingInspection"})
 @Entity
 public class User {
     @Id
     @GeneratedValue(generator = "WorkId")
-    @GenericGenerator(name = "WorkId",strategy = "assigned")
+    @GenericGenerator(name = "WorkId", strategy = "assigned")
     private long WorkID;
 
     @Basic
@@ -34,6 +34,7 @@ public class User {
 
     @Basic
     private String password;
+
     public User() {
     }
 
