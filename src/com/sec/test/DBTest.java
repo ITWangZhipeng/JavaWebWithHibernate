@@ -1,5 +1,7 @@
 package com.sec.test;
 
+import com.sec.db.ChuanZhen;
+import com.sec.db.JiGui;
 import com.sec.db.TongZhiDan;
 import com.sec.db.User;
 import org.hibernate.Query;
@@ -17,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("JpaQlInspection")
 public class DBTest {
     Session session;
     Transaction transaction;
@@ -46,7 +49,6 @@ public class DBTest {
         User user4 = new User(10432414, "陈福龙", "111111");
 
         Set<TongZhiDan> tongZhiDanSet = new HashSet<TongZhiDan>();
-
         TongZhiDan tongZhiDan1 = new TongZhiDan("设订单", "NOB10000SH30C065......");
         TongZhiDan tongZhiDan2 = new TongZhiDan("设订单", "NOB10000SH30C066......");
         TongZhiDan tongZhiDan3 = new TongZhiDan("设订单", "NOB10000SH30C067......");
@@ -54,13 +56,40 @@ public class DBTest {
         tongZhiDanSet.add(tongZhiDan1);
         tongZhiDanSet.add(tongZhiDan2);
         tongZhiDanSet.add(tongZhiDan3);
-
         user1.setTongZhiDens(tongZhiDanSet);
 
         session.save(tongZhiDan1);
         session.save(tongZhiDan2);
         session.save(tongZhiDan3);
 
+
+        Set<JiGui> jiGuiSet = new HashSet<JiGui>();
+        JiGui jiGui1 = new JiGui("NOB0600SH30C021...");
+        JiGui jiGui2 = new JiGui("NOB0600SH30C022...");
+        JiGui jiGui3 = new JiGui("NOB0600SH30C023...");
+
+        jiGuiSet.add(jiGui1);
+        jiGuiSet.add(jiGui2);
+        jiGuiSet.add(jiGui3);
+        user1.setJiGuis(jiGuiSet);
+
+        session.save(jiGui1);
+        session.save(jiGui2);
+        session.save(jiGui3);
+
+        Set<ChuanZhen> chuanZhenSet = new HashSet<ChuanZhen>();
+        ChuanZhen chuanZhen1 = new ChuanZhen("NOB0600SH30C021...");
+        ChuanZhen chuanZhen2 = new ChuanZhen("NOB0600SH30C021...");
+        ChuanZhen chuanZhen3 = new ChuanZhen("NOB0600SH30C021...");
+
+        chuanZhenSet.add(chuanZhen1);
+        chuanZhenSet.add(chuanZhen2);
+        chuanZhenSet.add(chuanZhen3);
+        user1.setChuanZhens(chuanZhenSet);
+
+        session.save(chuanZhen1);
+        session.save(chuanZhen2);
+        session.save(chuanZhen3);
 
         session.save(user1);
         session.save(user2);
@@ -70,17 +99,37 @@ public class DBTest {
     }
 
     @Test
-    public void Inquiry() {
+    public void Inquiry_TZD() {
         String hql = "from TongZhiDan where WorkID =:WorkID";
         Query query = session.createQuery(hql);
         query.setLong("WorkID", 10433208L);
         List<TongZhiDan> list = query.list();
-        for(TongZhiDan users : list){
-            System.out.println(users.toString());
+        for (TongZhiDan TZD : list) {
+            System.out.println(TZD.toString());
         }
     }
 
+    @Test
+    public void Inquiry_JG() {
+        String hql = "from JiGui where WorkID =:WorkID";
+        Query query = session.createQuery(hql);
+        query.setLong("WorkID", 10433208L);
+        List<JiGui> list = query.list();
+        for (JiGui JG : list) {
+            System.out.println(JG.toString());
+        }
+    }
 
+    @Test
+    public void Inquiry_CZ() {
+        String hql = "from ChuanZhen where WorkID =:WorkID";
+        Query query = session.createQuery(hql);
+        query.setLong("WorkID", 10433208L);
+        List<ChuanZhen> list = query.list();
+        for (ChuanZhen CZ : list) {
+            System.out.println(CZ.toString());
+        }
+    }
 }
 
 

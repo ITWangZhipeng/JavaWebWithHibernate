@@ -8,6 +8,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/11/30.
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 public class User {
     @Id

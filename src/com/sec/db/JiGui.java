@@ -1,27 +1,34 @@
 package com.sec.db;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Created by Administrator on 2016/11/30.
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 public class JiGui {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int jid;
-    @Basic
+
+    /*@Basic
     @Column(name = "机规")
-    private String department="机规";
+    private String department="机规";*/
+
     @Basic
     @Column(name = "内容")
     private String content;
 
+    @Basic
+    @Column(name = "年度")
+    private int year = Calendar.getInstance().get(Calendar.YEAR);
+
     public JiGui() {
     }
 
-    public JiGui(String department, String content) {
-        this.department = department;
+    public JiGui(String content) {
         this.content = content;
     }
 
@@ -29,9 +36,6 @@ public class JiGui {
         return jid;
     }
 
-    public String getDepartment() {
-        return department;
-    }
 
     public String getContent() {
         return content;
@@ -41,20 +45,24 @@ public class JiGui {
         this.jid = jid;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public void setContent(String content) {
         this.content = content;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     @Override
     public String toString() {
-        return "com.sec.db.JiGui{" +
-                "jid=" + jid +
-                ", 部门='" + department + '\'' +
-                ", 内容='" + content + '\'' +
+        String new_sid = String.format("%03d", jid);
+        return "com.sec.db.JiGui{机规" +
+                (year-2000) + '-' +new_sid +
+                ":" + content +
                 '}';
     }
 }

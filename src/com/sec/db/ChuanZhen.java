@@ -1,10 +1,12 @@
 package com.sec.db;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Created by Administrator on 2016/11/30.
  */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 public class ChuanZhen {
     @Id
@@ -12,34 +14,34 @@ public class ChuanZhen {
     private int cid;
 
     @Basic
-    @Column(name = "department")
-    private String department="传真";
+    @Column(name = "content")
+    private String content;
 
+    @Basic
+    @Column(name = "年度")
+    private int year = Calendar.getInstance().get(Calendar.YEAR);
 
     public ChuanZhen() {
+    }
+
+    public ChuanZhen(String content) {
+        this.content = content;
     }
 
     public int getCid() {
         return cid;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
     public void setCid(int cid) {
         this.cid = cid;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     @Override
     public String toString() {
-        return "com.sec.db.ChuanZhen{" +
-                "cid=" + cid +
-                ", 部门='" + department + '\'' +
+        String new_cid = String.format("%03d", cid);
+        return "com.sec.db.ChuanZhen{传真" +
+                (year-2000) + '-' +new_cid +
+                ":" + content +
                 '}';
     }
 }
